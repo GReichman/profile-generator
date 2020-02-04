@@ -1,2 +1,4 @@
-
+*.pdf
+*.html
+!example.html
 node_modules
