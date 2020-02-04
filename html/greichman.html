@@ -1,9 +1,4 @@
-const createPage = (info, colors) => {
-    console.log(info);
-    console.log(colors);
 
-    const page =
-        `
 <!doctype html>
 <html lang="en">
 
@@ -30,7 +25,7 @@ const createPage = (info, colors) => {
 
     <style>
         body {
-            background-color: ${colors.base};
+            background-color: #167107;
             color: white;
         }
 
@@ -48,18 +43,18 @@ const createPage = (info, colors) => {
         #headerRow {
             margin-top: 20px;
             padding: 5px;
-            background-color: ${colors.head};
+            background-color: #0C5600;
             text-align: center;
         }
 
         .bodyRow {
-            background-color: ${colors.body};
+            background-color: #6EA865;
             text-align: center;
             padding: 10px;
         }
 
         .infoCol {
-            background-color: ${colors.head};
+            background-color: #0C5600;
             margin-top: 10px;
 
         }
@@ -78,14 +73,14 @@ const createPage = (info, colors) => {
 
         <div class="row" id="headerRow">
             <div class="col-12">
-                <img class="rounded-circle" src=${info.picture} alt="profile picture">
-                <h1> ${info.name}</h1>
+                <img class="rounded-circle" src=https://avatars3.githubusercontent.com/u/28243877?v=4 alt="profile picture">
+                <h1> Garrett Reichman</h1>
                 <p>
-                    <a href="https://www.google.com/maps/place/${info.location}">${info.location}</a>
+                    <a href="https://www.google.com/maps/place/Newnan, GA">Newnan, GA</a>
                     <span>|</span>
-                    <a href="https://www.github.com/${info.username}"> Github </a>
+                    <a href="https://www.github.com/greichman"> Github </a>
                     <span>|</span>
-                    <a href=${info.blog}> Portfolio </a>
+                    <a href=https://greichman.github.io/developer-portfolio/> Portfolio </a>
                 </p>
             </div>
         </div>
@@ -93,29 +88,29 @@ const createPage = (info, colors) => {
         <div class="row bodyRow">
 
             <div class="col-12" id="bodyCol">
-                <h3> ${info.bio} </h3>
+                <h3> future full stack developer </h3>
             </div>
         </div>
 
         <div class="row bodyRow">
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 rounded infoCol">
                 <h4>Public Repositories</h4>
-                <p>${info.repos}</p>
+                <p>15</p>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 rounded infoCol">
                 <h4>Github Stars</h4>
-                <p>${info.stars}</p>
+                <p>4</p>
             </div>
         </div>
 
         <div class="row bodyRow">
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 rounded infoCol">
                 <h4>Followers</h4>
-                <p>${info.followers}</p>
+                <p>13</p>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 rounded infoCol">
                 <h4>Following</h4>
-                <p>${info.following}</p>
+                <p>20</p>
             </div>
         </div>
 
@@ -125,19 +120,3 @@ const createPage = (info, colors) => {
 
 </html>
 
-`
-
-return page;
-
-
-}//createPage
-
-
-
-
-
-
-
-module.exports = {
-    createPage: createPage
-}

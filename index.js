@@ -3,18 +3,21 @@ const inquirer = require("inquirer");
 const axios = require("axios");
 const page = require("./page.js");
 const util = require("util");
+const pdf = require("html-pdf");
 
 const githubLink = "https://api.github.com/users/";
 const asyncWrite = util.promisify(fs.writeFile);
 
-const user = process.argv[2];
-const defaultColor = "red";
+// const user = process.argv[2];
+// const defaultColor = "blue";
 
 
 makeProfile();
 async function makeProfile() {
 
-    //const info = await getInfo();
+    const info = await getInfo();
+    const user=info.user;
+    const defaultColor = info.color;
     const gitPage = await getGithub(user);
     const repos = await getRepos(user);
 
@@ -33,8 +36,25 @@ async function makeProfile() {
         stars
     );
     console.log(currProfile);
-
+    const fileName = "./html/"+user+".html";
     const html = page.createPage(currProfile,colorPicker(defaultColor));
+
+    asyncWrite(fileName,html).then(()=>{
+        
+        const input = fs.readFileSync(fileName,'utf8');
+        const options= {format:"Letter"};
+
+        pdf.create(input,options).toFile("./pdf/"+user+".pdf",(err,res)=>{
+            if(err){
+                throw err;
+            }
+            console.log("pdf created!");
+            console.log(res);
+
+
+        });
+
+    });
 
 
 }//makeProfile
