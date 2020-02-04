@@ -1,4 +1,4 @@
-const createPage = info=>{
+const createPage = (info,colors)=>{
     console.log(info);
 }
 
