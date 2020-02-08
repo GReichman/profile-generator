@@ -16,8 +16,10 @@ makeProfile();
 async function makeProfile() {
 
     const info = await getInfo();
-    const user=info.user;
+    const user = info.user;
     const defaultColor = info.color;
+
+    console.log("Getting user data...");
     const gitPage = await getGithub(user);
     const repos = await getRepos(user);
 
@@ -35,27 +37,28 @@ async function makeProfile() {
         gitPage.data.following,
         stars
     );
-    console.log(currProfile);
-    const fileName = "./html/"+user+".html";
-    const html = page.createPage(currProfile,colorPicker(defaultColor));
+    // console.log(currProfile);
+    console.log("Creating pdf...")
+    const fileName = "./html/" + user + ".html";
+    const html = page.createPage(currProfile, colorPicker(defaultColor));
 
-    asyncWrite(fileName,html).then(()=>{
-        
-        const input = fs.readFileSync(fileName,'utf8');
-        const options= {format:"Letter"};
+    asyncWrite(fileName, html).then(() => {
 
-        pdf.create(input,options).toFile("./pdf/"+user+".pdf",(err,res)=>{
-            if(err){
+        const input = fs.readFileSync(fileName, 'utf8');
+        const options = { format: "Letter" };
+
+        pdf.create(input, options).toFile("./pdf/" + user + ".pdf", (err, res) => {
+            if (err) {
                 throw err;
             }
-            console.log("pdf created!");
-            console.log(res);
+            // console.log("pdf created!");
+            // console.log(res);
 
 
         });
 
     });
-
+    console.log("Done!");
 
 }//makeProfile
 
@@ -123,7 +126,7 @@ function colorPicker(chosenColor) {
             colors.push("#771922");
             colors.push("#49060C");
             colors.push("#D2616C");
-            
+
             break;
 
         case "blue":
@@ -151,14 +154,14 @@ function colorPicker(chosenColor) {
             break;
     }//switch
 
-    const colorObj = new ColorObject(colors[0],colors[1],colors[2]);
+    const colorObj = new ColorObject(colors[0], colors[1], colors[2]);
     return colorObj;
 
 
 }//colorPicker
 
-function ColorObject(color1,color2,color3){
-    this.base=color1;
-    this.head=color2;
-    this.body=color3;
+function ColorObject(color1, color2, color3) {
+    this.base = color1;
+    this.head = color2;
+    this.body = color3;
 }//ColorObject

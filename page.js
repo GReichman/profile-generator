@@ -1,6 +1,6 @@
 const createPage = (info, colors) => {
-    console.log(info);
-    console.log(colors);
+    // console.log(info);
+    // console.log(colors);
 
     const page =
         `
